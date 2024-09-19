@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lesson4/model/book.dart';
+import 'package:lesson4/view/bookdetailview_screen.dart';
 import 'package:lesson4/view/counterdemo_screen.dart';
 import 'package:lesson4/view/listviewdemo_screen.dart';
 import 'package:lesson4/view/start_screen.dart';
@@ -21,6 +23,14 @@ class Lesson4App extends StatelessWidget {
         StartScreen.routeName:(context) => const StartScreen(),
         CounterDemoScreen.routeName:(context) => const CounterDemoScreen(),
         ListViewDemoScreen.routeName: (context) => const ListViewDemoScreen(),
+        BookDetailViewScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args != null && args is Book) {
+           return  BookDetailViewScreen(args);
+          }else{
+            return const Text('Argument is null or not Book');
+          }
+           },
       },
     );
   }
